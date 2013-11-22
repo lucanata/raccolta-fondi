@@ -46,6 +46,7 @@ end
 
 # Use devise for authentication
 gem 'devise'
+gem 'protected_attributes'
 
 #Use Hirb to format db data
 gem 'hirb'
