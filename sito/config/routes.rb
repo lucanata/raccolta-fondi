@@ -1,4 +1,6 @@
 Sito::Application.routes.draw do
+  resources :campaigns
+
   devise_for :users,:controllers => { :registrations =>'registration'}
   root :to =>'home#index'
   get 'index' => 'home#index'

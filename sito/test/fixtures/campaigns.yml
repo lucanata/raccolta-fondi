@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  descrizione: MyText
+  durata: 2013-11-27
+  goal: 1
+  chiusa: false
+
+two:
+  nome: MyString
+  descrizione: MyText
+  durata: 2013-11-27
+  goal: 1
+  chiusa: false

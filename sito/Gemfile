@@ -50,3 +50,10 @@ gem 'protected_attributes'
 
 #Use Hirb to format db data
 gem 'hirb'
+
+#Use bootstrap for templates
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
+
+#Use simple_form for form creation
+gem 'simple_form'
