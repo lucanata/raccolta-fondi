@@ -1,15 +1,12 @@
-<%= simple_form_for(@campaign) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :nome %>
-    <%= f.input :descrizione %>
-    <%= f.input :durata %>
-    <%= f.input :goal %>
-    <%= f.input :chiusa %>
-  </div>
-
+<%= simple_form_for @campaign, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :nome %>
+  <%= f.input :descrizione %>
+  <%= f.input :durata %>
+  <%= f.input :goal %>
+  <%= f.input :chiusa %>
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                campaigns_path, :class => 'btn' %>
   </div>
 <% end %>
