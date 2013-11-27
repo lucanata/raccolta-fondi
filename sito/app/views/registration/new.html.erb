@@ -1,70 +1,18 @@
 <h2>Sign up</h2>
 
-<%= form_tag(user_registration_path,:method => 'post') %>
-<%= devise_error_messages! %>
-<table>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= f.input :nome, :label => 'Nome/Nome associazione' %>
+<%= f.input :cognome, :label => 'Cognome' %>
+<%= f.input :via, :label => 'Via' %>
+<%= f.input :ncivico, :label => 'Numero civico', input_html: { maxlength: 5 } %>
+<%= f.input :paese, :label => 'Comune' %>
+<%= f.input :cap, :label => 'CAP', input_html: { maxlength: 5 }  %>
+<%= f.input :datanascita, as: :date, start_year: Date.today.year - 120, end_year: Date.today.year - 18 %>
+<%= f.input :piva_codf, :label => 'P.IVA o Cod.Fiscale', input_html: { maxlength: 16 } %>
+<%= f.input :email, :label => 'E-mail', placeholder: 'user@domain.com' %>
+<%= f.input :password, :label => 'Password' %>
+<%= f.input :password_confirmation, :label => 'Conferma password' %>
+<%= f.submit 'Registrati' %>
+<% end %>
 
-<tr>
-<td>Nome : </td>
-<td><%=text_field_tag "user[nome]",@user.nome %></td>
-</tr>
-
-<tr>
-<td>Cognome : </td>
-<td><%=text_field_tag "user[cognome]",@user.cognome %></td>
-</tr>
-
-
-
-<tr>
-<td>Data di nascita : </td>
-<td><%= date_select "user[datanascita]", @user.datanascita %></td>
-</tr>
-
-<tr>
-<td>Via e numero civico : </td>
-<td><%=text_field_tag "user[via]",@user.via %></td>
-<td><%=text_field_tag "user[ncivico]",@user.ncivico %></td>
-</tr>
-
-<tr>
-<td>Paese : </td>
-<td><%=text_field_tag "user[paese]",@user.paese %></td>
-</tr>
-
-<tr>
-<td>CAP : </td>
-<td><%=text_field_tag "user[cap]",@user.cap %></td>
-</tr>
-
-<tr>
-<td>Provincia : </td>
-<td><%=text_field_tag "user[prov]",@user.prov %></td>
-</tr>
-
-<tr>
-<td>Email : </td>
-<td><%=email_field_tag "user[email]",@user.email %></td>
-</tr>
-
-<tr>
-<td>Password : </td>
-<td><%=password_field_tag "user[password]",@user.password %></td>
-</tr>
-
-<tr>
-<td>Retype password : </td>
-<td><%=password_field_tag "user[password_confirmation]",@user.password_confirmation %></td>
-</tr>
-
-
-
-
-
-
-<tr>
-<td><%= submit_tag nil, :class => "form_submit"%></td>
-</tr>
-</table>
-<br />
 <%= render :partial => "devise/shared/links" %>

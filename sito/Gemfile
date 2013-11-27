@@ -57,3 +57,6 @@ gem 'twitter-bootstrap-rails'
 
 #Use simple_form for form creation
 gem 'simple_form'
+
+#Use validates_timeliness for campaigns
+gem 'validates_timeliness','~> 3.0'

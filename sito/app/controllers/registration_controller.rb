@@ -12,14 +12,11 @@ def create
 @user.nome = params[:user][:nome]
 @user.cognome = params[:user][:cognome]
 #@user.datanascita = params[:user][:datanascita]
-
-#dl=[:datanascita]
-
-#d=Date.new(dl['(1i)'].to_i, dl['(2i)'].to_i, dl['(3i)'].to_i)
-#dl.to_s
-#@user.datanascita = dl
-
-@user.datanascita = params[:user][:datanascita].map{|k,v| v}.join("-").to_date
+years=params[:user]['datanascita(1i)'];
+month=params[:user]['datanascita(2i)'];
+days=params[:user]['datanascita(3i)'];
+d=Date.new(years.to_i,month.to_i,days.to_i)
+@user.datanascita = d#params[:user][:datanascita]
 
 @user.paese = params[:user][:paese]
 @user.prov = params[:user][:prov]
