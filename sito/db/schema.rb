@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131128090614) do
+ActiveRecord::Schema.define(version: 20131128085534) do
 
   create_table "aims", force: true do |t|
     t.string   "scopo"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20131128090614) do
     t.integer  "totale"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "aim_id"
   end
 
   create_table "campaigns", force: true do |t|
