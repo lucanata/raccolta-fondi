@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
-  attr_accessible :nome, :cognome, :via, :ncivico, :comune, :prov, :datanascita, :piva_codf, :email, :password, :password_confirmation
+  attr_accessible :nome, :cognome, :via, :ncivico, :comune, :prov, :datanascita, 
+                  :piva_codf, :email, :password, :password_confirmation, :campaign_id, :bill_id
   
   validates :nome, :presence => true
   
@@ -23,6 +24,9 @@ class User < ActiveRecord::Base
   
   validates :piva_codf, :presence => true, :length => { in: 11..16 }
 
+  validates :bill_id, :presence => true
 
+  belongs_to :campaign
+  belongs_to :bill
 end
 
