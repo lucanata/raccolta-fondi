@@ -12,8 +12,7 @@ class Campaign < ActiveRecord::Base
   	validates :goal, :presence => true,
 				:numericality => { :greater_than => 0 }
 
-	validates :bill_id, :presence => true
-
+	
 	has_one :user
 	belongs_to :bill
   	#validates :chiusa, :presence => true
