@@ -1,4 +1,8 @@
 Sito::Application.routes.draw do
+  resources :bills
+
+  resources :aims
+
   resources :campaigns
 
   devise_for :users,:controllers => { :registrations =>'registration'}

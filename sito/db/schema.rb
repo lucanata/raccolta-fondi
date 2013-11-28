@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126232237) do
+ActiveRecord::Schema.define(version: 20131128090614) do
+
+  create_table "aims", force: true do |t|
+    t.string   "scopo"
+    t.integer  "importo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bills", force: true do |t|
+    t.integer  "totale"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "campaigns", force: true do |t|
     t.string   "nome"
@@ -21,6 +34,7 @@ ActiveRecord::Schema.define(version: 20131126232237) do
     t.boolean  "chiusa"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bill_id"
   end
 
   create_table "users", force: true do |t|
@@ -46,6 +60,8 @@ ActiveRecord::Schema.define(version: 20131126232237) do
     t.date     "datanascita"
     t.boolean  "associazione"
     t.string   "piva_codf"
+    t.integer  "campaign_id"
+    t.integer  "bill_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
