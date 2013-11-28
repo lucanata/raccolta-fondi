@@ -1,0 +1,26 @@
+<h2> Il tuo profilo</h2>
+
+Nome:
+<%= @user.nome %>
+Cognome:
+<%= @user.cognome %>
+Via:
+<%= @user.via %>
+Numero civico:
+<%= @user.ncivico %>
+Data di nascita:
+<%= @user.datanascita %>
+Comune:
+<%= @user.paese %>
+Provincia:
+<%= @user.prov %>
+CAP:
+<%= @user.cap %>
+P.IVA / Codice Fiscale:
+<%= @user.piva_codf %>
+
+
+
+
+<%= link_to "Modifica", edit_user_registration_path, :method => :get %>
+

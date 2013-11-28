@@ -1,6 +1,8 @@
 <% if user_signed_in? %>
 
 <h3>you have succesfully signed in</h3>
+<%= link_to "Il mio account", user_path(current_user) %>
+<%= link_to "Modifica il tuo account", edit_user_registration_path, :method => :get %>
 <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
 
 <% else %>

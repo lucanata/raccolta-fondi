@@ -1,11 +1,29 @@
 class RegistrationController < Devise::RegistrationsController
 
     def new
-
         @user= User.new
-
     end
-
+    
+    def show
+        @user = current_user
+    end
+    
+    
+    def update
+        @user = User.find(current_user.id)
+        if @user.update_attributes(params[:user])
+            set_flash_message :notice, :updated
+            # Sign in the user bypassing validation in case his password changed
+            sign_in @user, :bypass => true
+            redirect_to after_update_path_for(@user)
+            else
+            render "edit"
+        end
+    end
+    
+    
+    
+    
     def create
 
     @user = User.new
@@ -37,21 +55,21 @@ class RegistrationController < Devise::RegistrationsController
 #           render :action => "new"
 #       end
 
-if resource.save
-    yield resource if block_given?
-    if resource.active_for_authentication?
-        set_flash_message :notice, :signed_up if is_flashing_format?
-        sign_up(resource_name, resource)
-        respond_with resource, :location => after_sign_up_path_for(resource)
+    if resource.save
+        yield resource if block_given?
+        if resource.active_for_authentication?
+            set_flash_message :notice, :signed_up if is_flashing_format?
+            sign_up(resource_name, resource)
+            respond_with resource, :location => after_sign_up_path_for(resource)
         else
-        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
-        expire_data_after_sign_in!
-        respond_with resource, :location => after_inactive_sign_up_path_for(resource)
-    end
+            set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
+            expire_data_after_sign_in!
+            respond_with resource, :location => after_inactive_sign_up_path_for(resource)
+        end
     else
-    clean_up_passwords resource
-    respond_with resource
-end
+        clean_up_passwords resource
+        respond_with resource
+    end
 
 
     end

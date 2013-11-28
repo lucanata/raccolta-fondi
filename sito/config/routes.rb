@@ -7,6 +7,7 @@ Sito::Application.routes.draw do
 
   devise_for :users,:controllers => { :registrations =>'registration'}
   root :to =>'home#index'
+  match '/users/:id', :to => 'users#show',    :as => :user,         :via => :get
   get 'index' => 'home#index'
 
   

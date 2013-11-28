@@ -1,0 +1,45 @@
+<h2> Il tuo profilo</h2>
+<table>
+<tr>
+    <td>Nome:</td>
+    <td><%= @user.nome %></td>
+</tr>
+<tr>
+    <td>Cognome:</td>
+    <td><%= @user.cognome %></td>
+</tr>
+<tr>
+    <td>Via:</td>
+    <td><%= @user.via %></td>
+</tr>
+<tr>
+    <td>Numero civico:</td>
+    <td><%= @user.ncivico %></td>
+</tr>
+<tr>
+    <td>Data di nascita:</td>
+    <td><%= @user.datanascita %></td>
+</tr>
+<tr>
+    <td>Comune:</td>
+    <td><%= @user.paese %></td>
+</tr>
+<tr>
+    <td>Provincia:</td>
+    <td><%= @user.prov %></td>
+</tr>
+<tr>
+    <td>CAP:</td>
+    <td><%= @user.cap %></td>
+</tr>
+<tr>
+    <td>P.IVA / Codice Fiscale:</td>
+    <td><%= @user.piva_codf %></td>
+</tr>
+</table>
+<br><br>
+
+
+
+<%= link_to "Modifica", edit_user_registration_path, :method => :get %>
+
