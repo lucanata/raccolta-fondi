@@ -24,8 +24,6 @@ class User < ActiveRecord::Base
   
   validates :piva_codf, :presence => true, :length => { in: 11..16 }
 
-  validates :bill_id, :presence => true
-
   belongs_to :campaign
   belongs_to :bill
 end
