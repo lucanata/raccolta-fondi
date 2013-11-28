@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          
   attr_accessible :nome, :cognome, :via, :ncivico, :comune, :prov, :datanascita, 
-                  :piva_codf, :email, :password, :password_confirmation, :campaign_id, :bill_id
+                  :piva_codf, :email, :password, :password_confirmation
   
   validates :nome, :presence => true
   

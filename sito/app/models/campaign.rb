@@ -1,5 +1,5 @@
 class Campaign < ActiveRecord::Base
-	attr_accessible :nome, :descrizione, :durata, :goal, :chiusa, :bill_id
+	attr_accessible :nome, :descrizione, :durata, :goal, :chiusa, :user_id
 
  	validates :nome, :presence => true,
                     :uniqueness => true
@@ -13,6 +13,9 @@ class Campaign < ActiveRecord::Base
 				:numericality => { :greater_than => 0 }
 
 	
+	#validates :user_id, :presence => true
+
+
 	has_one :user
 	belongs_to :bill
   	#validates :chiusa, :presence => true
