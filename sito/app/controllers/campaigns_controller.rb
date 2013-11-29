@@ -12,6 +12,12 @@ class CampaignsController < ApplicationController
   def show
   end
 
+  def mycampaigns
+    @user=current_user
+    #questo funzia    #@campaigns = Campaign.where(user_id: @user.id)
+    @campaigns = @user.campaigns
+  end
+
   # GET /campaigns/new
   def new
     @campaign = Campaign.new
@@ -24,7 +30,9 @@ class CampaignsController < ApplicationController
   # POST /campaigns
   # POST /campaigns.json
   def create
+
     @campaign = Campaign.new(campaign_params)
+    @campaign.user_id = current_user.id
 
     respond_to do |format|
       if @campaign.save

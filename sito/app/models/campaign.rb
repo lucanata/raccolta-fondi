@@ -14,8 +14,10 @@ class Campaign < ActiveRecord::Base
 
 	#validates :user_id, :presence => true
 	
-	has_one :user
-	belongs_to :bill
+	belongs_to :user
+
+
+	has_many :bills
   	#validates :chiusa, :presence => true
  
 end
