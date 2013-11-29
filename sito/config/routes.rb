@@ -10,7 +10,12 @@ Sito::Application.routes.draw do
   match '/users/:id', :to => 'users#show',    :as => :user,         :via => :get
   get 'index' => 'home#index'
 
+
+  match '/mycampaigns' => 'campaigns#mycampaigns', :as => 'mycampaigns', :via => :get
+
+
   
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

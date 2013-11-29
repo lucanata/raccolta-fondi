@@ -7,5 +7,5 @@ class Aim < ActiveRecord::Base
 	
 	#validates :bill_id, :presence => true
 
-	has_one :bill
+	belongs_to :bill
 end
