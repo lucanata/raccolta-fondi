@@ -1,4 +1,5 @@
 class CampaignsController < ApplicationController
+  respond_to :html, :xml, :json
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
 
   # GET /campaigns
@@ -10,6 +11,9 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
+    @user=current_user
+    @campaign=Campaign.find(params[:id])
+    respond_with(@campaign)
   end
 
   def mycampaigns

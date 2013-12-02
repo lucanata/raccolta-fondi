@@ -1,5 +1,11 @@
 class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
+  before_filter :load_campaign
+
+
+
+
+
 
   # GET /bills
   # GET /bills.json
@@ -14,7 +20,12 @@ class BillsController < ApplicationController
 
   # GET /bills/new
   def new
-    @bill = Bill.new
+    
+    #@campaign= Campaign.find(params[:campaign_id])
+    #bill = Bill.new(:campaign => @campaign)
+    #@campaigns = Campaign.where(id: params[:campaign_id])
+    #@campaigns = Campaign.where(user_id: @user.id)
+    @bill = @campaign.bills.new
   end
 
   # GET /bills/1/edit
@@ -24,11 +35,14 @@ class BillsController < ApplicationController
   # POST /bills
   # POST /bills.json
   def create
-    @bill = Bill.new(bill_params)
+
+    @user=current_user
+    @bill=@campaign.bills.new(params[:bill])
+    @bill.user_id = @user.id
 
     respond_to do |format|
       if @bill.save
-        format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
+        format.html { redirect_to [@campaign, @bill], notice: 'Bill was successfully created.' }
         format.json { render action: 'show', status: :created, location: @bill }
       else
         format.html { render action: 'new' }
@@ -62,6 +76,12 @@ class BillsController < ApplicationController
   end
 
   private
+
+    #viene fatto prima di ogni azione (before_filter) almeno ho sempre la campagna a cui si riferisce
+    def load_campaign
+      @campaign= Campaign.find(params[:campaign_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_bill
       @bill = Bill.find(params[:id])
@@ -69,6 +89,6 @@ class BillsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bill_params
-      params.require(:bill).permit(:totale)
+      params.require(:bill).permit(:totale,:campaign_id)
     end
 end
