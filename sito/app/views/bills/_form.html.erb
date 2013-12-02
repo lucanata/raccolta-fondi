@@ -1,11 +1,10 @@
-<%= simple_form_for(@bill) do |f| %>
-  <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :totale %>
-  </div>
+<%= form_for ([@campaign, @bill]) do |f| %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <p>
+    <%= f.label :totale %><br />
+    <%= f.number_field :totale %>
+  </p>
+
+  <p><%= f.submit "Versa"%></p>
 <% end %>
