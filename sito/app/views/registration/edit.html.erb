@@ -8,8 +8,8 @@
     <%= f.input :via, :label => 'Via' %>
     <%= f.input :ncivico, :label => 'Numero civico', input_html: { maxlength: 5 } %>
     <%= f.input :paese, :label => 'Comune' %>
-    <%= f.input :prov, :label => 'Provincia', input_html: { length: 2 } %>
-    <%= f.input :cap, :label => 'CAP', input_html: { length: 5 }  %>
+    <%= f.input :prov, :label => 'Provincia', input_html: { maxlength: 2, minlength:2 } %>
+    <%= f.input :cap, :label => 'CAP', input_html: { maxlength: 5, minlength: 5 }  %>
     <%= f.input :datanascita, as: :date, start_year: Date.today.year - 120, end_year: Date.today.year - 18 %>
     <%= f.input :piva_codf, :label => 'P.IVA o Cod.Fiscale', input_html: { maxlength: 16 } %>
     <%= f.input :email, :label => 'E-mail', placeholder: 'user@domain.com' %>
