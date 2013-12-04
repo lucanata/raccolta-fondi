@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--aggiungo per timer, funziona anche senza  -->
+  <link rel="stylesheet" type="text/css" href="/app/assets/stylesheets/jquery.countdown.css"> 
+  <script type="text/javascript" src="/app/assets/javascripts/jquery.countdown.js"></script>
+
+</head>
+
+<body>
 <%- model_class = Campaign -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
@@ -16,9 +26,30 @@
   <dd><%= @campaign.chiusa %></dd>
   <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
   <dd><%= @campaign.user_id %></dd>
+  <dt><strong>Completamento: </strong></dt>
+  <dd><%= @campaign.somma * 100 /@campaign.goal %> %</dd>
+  <dd> Raccolti <%= @campaign.somma %> di <%= @campaign.goal %></dd>
+  
+  
 </dl>
 
+<%= progress_bar(@campaign.somma * 100 /@campaign.goal, :color =>'orange', :rounded => true) %>
+<br></br>
+
+ <dt><strong>La campagna scade tra: </strong></dt>
+ <div id="countDownTimer"></div>
+  <script> 
+	var year = <%= @campaign.durata.year %>;
+	var month = <%= @campaign.durata.month %>; 
+	var day = <%= @campaign.durata.day %>; 
+	var dealEndDate = new Date(); 
+	dealEndDate = new Date(year, month - 1, day); 
+	$('#countDownTimer').countdown({until: dealEndDate}); 
+  </script>
+
 <div class="form-actions">
+
+  <%= link_to "Versamento", new_campaign_bill_path(@campaign), :class => 'btn' %>  
   <%= link_to t('.back', :default => t("helpers.links.back")),
               campaigns_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -30,6 +61,6 @@
               :class => 'btn btn-danger' %>
 </div>
 
-<div class="versamento">
-  <%= link_to "Versamento", new_campaign_bill_path(@campaign), :class => 'btn' %>
-</div>
+
+</body>
+</html>
