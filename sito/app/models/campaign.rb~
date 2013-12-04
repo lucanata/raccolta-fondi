@@ -13,12 +13,7 @@ class Campaign < ActiveRecord::Base
 				:numericality => { :greater_than => 0 }
 
 	#validates :user_id, :presence => true
-
-	#definisco funzione somma che somma tutti i versamenti per una campagna	
-	def somma
-    		bills.inject(0) {|s,r| s += r.totale }
- 	end
-
+	
 	belongs_to :user
 
 

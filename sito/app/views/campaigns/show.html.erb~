@@ -33,7 +33,7 @@
   
 </dl>
 
-<%= progress_bar(@campaign.somma * 100 /@campaign.goal, :color =>'orange', :rounded => true) %>
+<%= progress_bar(@campaign.somma * 100 /@campaign.goal, :color =>'yellow', :rounded => true) %>
 <br></br>
 
  <dt><strong>La campagna scade tra: </strong></dt>
