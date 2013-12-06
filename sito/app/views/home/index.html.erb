@@ -13,30 +13,12 @@
 <%= link_to "Sign up", new_user_registration_path, :method => :get %>
 
 <% end %>
-<%- model_class = Campaign -%>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:nome) %></th>
-      <th><%= model_class.human_attribute_name(:descrizione) %></th>
-      <th><%= model_class.human_attribute_name(:durata) %></th>
-      <th><%= model_class.human_attribute_name(:goal) %></th>
-      <th><%= model_class.human_attribute_name(:chiusa) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @campaigns.each do |campaign| %>
-      <tr>
-        <td><%= link_to campaign.id, campaign_path(campaign) %></td>
-        <td><%= campaign.nome %></td>
-        <td><%= campaign.descrizione %></td>
-        <td><%= campaign.durata %></td>
-        <td><%= campaign.goal %></td>
-        <td><%= campaign.chiusa %></td>
-        <td><%=l campaign.created_at %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<br>
+<br>
+
+<h3>Campagne prossime alla scadenza</h3>
+<%= render :partial => 'tabletime' %>
+
+<hr>
+<h3>Campagne prossime al goal</h3>
+

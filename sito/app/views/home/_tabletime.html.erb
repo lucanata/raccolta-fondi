@@ -1,0 +1,22 @@
+
+<%- model_class = Campaign -%>
+<table class="table tavle-striped">
+    <% @campaigns.each do |campaign| %>
+      <tr>
+        <td><strong><%= link_to campaign.nome, campaign_path(campaign) %></strong></td>
+        <td><%= progress_bar(campaign.somma * 100 /campaign.goal, :color =>'orange', :rounded => true) %> <%= campaign.somma %> di <%= campaign.goal %></td>
+        <td><div id="countDownTimer<%= campaign.id %>"></div>
+            <script>
+                var year = <%= campaign.durata.year %>;
+                var month = <%= campaign.durata.month %>;
+                var day = <%= campaign.durata.day %>;
+                var dealEndDate = new Date();
+                dealEndDate = new Date(year, month - 1, day);
+                $('#countDownTimer<%= campaign.id %>').countdown({until: dealEndDate});
+            </script>
+        </td>
+      </tr>
+    <% end %>
+</table>
+
+
