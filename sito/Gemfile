@@ -64,3 +64,6 @@ gem 'validates_timeliness','~> 3.0'
 
 #Use progress bar for campaigns
 gem 'css3-progress-bar-rails'
+
+#create seeds file from existing database data
+gem 'seed_dump'

@@ -1,0 +1,53 @@
+PER USARE IL FILE DI SEED
+creare lo schema con:	rake db:migrate
+usare il seed:			rake db:seed
+
+
+
+
+DATI NEL DB
+
+TABELLA USER
+
+id		email				pass	
+
+1   	prova@prova.it		provaprova
+2		ciao@ciao.it		ciaociao
+3		terzo@terzo.it		terzoterzo
+
+
+TABELLA CAMPAIGN
+
+prova@prova ha creato 3 campagne
+
+id		nome
+
+1		prima	
+2		seconda	
+3		terza
+
+
+ciao@ciao ha creato 3 campagne
+
+id		nome
+
+4		prima prova	
+5		seconda	prova
+6		terza prova
+
+terzo@terzo ha creato 0 campagne
+
+
+
+
+TABELLA BILL
+
+Utente prova@prova.it ha versato 10000 per la campagna 1  
+Utente prova@prova.it ha versato 10000 per la campagna 3
+Utente ciao@ciao.it ha versato 20000 per la campagna 6
+Utente ciao@ciao.it ha versato 20000 per la campagna 5
+Utente terzo@terzo.it ha versato 10000 per la campagna 4
+
+
+
+
