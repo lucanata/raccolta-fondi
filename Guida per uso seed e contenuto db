@@ -1,3 +1,10 @@
+PER USARE IL FILE DI SEED
+creare lo schema con:	rake db:migrate
+usare il seed:			rake db:seed
+
+
+
+
 DATI NEL DB
 
 TABELLA USER
@@ -40,3 +47,7 @@ Utente prova@prova.it ha versato 10000 per la campagna 3
 Utente ciao@ciao.it ha versato 20000 per la campagna 6
 Utente ciao@ciao.it ha versato 20000 per la campagna 5
 Utente terzo@terzo.it ha versato 10000 per la campagna 4
+
+
+
+
