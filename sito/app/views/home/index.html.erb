@@ -1,20 +1,3 @@
-<% if user_signed_in? %>
-
-<h3>Benvenuto <%= current_user.nome%> <%=current_user.cognome%> </h3>
-<%= link_to "Il mio account", user_path(current_user) %>
-<%= link_to "Modifica il tuo account", edit_user_registration_path, :method => :get %>
-<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-<%= link_to "Le mie campagne", mycampaigns_path, :method => :get %>
-
-<% else %>
-
-<h1> Benvenuto al sito di donazioni</h1>
-<%= link_to "Sign In", new_user_session_path, :method => :get %>
-<%= link_to "Sign up", new_user_registration_path, :method => :get %>
-
-<% end %>
-<br>
-<br>
 
 <h3>Campagne prossime alla scadenza</h3>
 <%= render :partial => 'tabletime' %>
