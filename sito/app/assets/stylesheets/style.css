@@ -1,0 +1,50 @@
+a {
+  color: #0088cc;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #005580;
+  text-decoration: underline;
+  background-color:transparent;
+}
+
+
+
+
+
+/*STILE DEI LINK FATTI A BOTTONE*/
+
+.btn a {
+  color: #ffffff;
+}
+
+.btn a:hover {
+  color: #ffffff;
+  text-decoration: none;
+    background-color:transparent;
+}
+.btn a:focus {
+  color: #ffffff;
+  text-decoration: none;
+  background-color:transparent;
+}
+
+.btn a:visited{
+  color: #ffffff;
+} 
+
+.btn.btn-default a{
+  color: #005580;
+}
+
+.btn.btn-default a{
+	color: #005580;
+}
+
+.btn.btn-default a:hover {
+  color: #005580;
+  text-decoration: none;
+    background-color:transparent;
+}
