@@ -1,9 +1,11 @@
 class CampaignsController < ApplicationController
+
+  load_and_authorize_resource
+
   respond_to :html, :xml, :json
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
   
   
-
   # GET /campaigns
   # GET /campaigns.json
   def index

@@ -1,11 +1,9 @@
 class BillsController < ApplicationController
+
+  load_and_authorize_resource
+
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
-  before_filter :load_campaign
-
-
-
-
-
+  before_filter :load_campaign, except: [:index]
 
   # GET /bills
   # GET /bills.json
@@ -73,6 +71,10 @@ class BillsController < ApplicationController
       format.html { redirect_to bills_url }
       format.json { head :no_content }
     end
+  end
+
+  def index
+      @bills = Bill.all
   end
 
   private

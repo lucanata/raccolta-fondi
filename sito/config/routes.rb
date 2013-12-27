@@ -7,9 +7,10 @@ Sito::Application.routes.draw do
     resources :bills
   end
 
-
+  resources :bills
   devise_for :users,:controllers => { :registrations =>'registration'}
   root :to =>'home#index'
+  match '/users', :to => 'users#index',    :as => 'users',         :via => :get
   match '/users/:id', :to => 'users#show',    :as => :user,         :via => :get
   get 'index' => 'home#index'
 

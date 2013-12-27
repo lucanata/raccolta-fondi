@@ -46,9 +46,13 @@
                 </div>
             </p>
             <p>
+                <% if can? :create, @bill %>
                 <div class="btn btn-success">
+                    
                     <%= link_to "Versamento", new_campaign_bill_path(campaign) %>
+                    
                 </div>
+                <% end %>
             </p>
         </div>
         
