@@ -67,3 +67,6 @@ gem 'css3-progress-bar-rails'
 
 #create seeds file from existing database data
 gem 'seed_dump'
+
+#authorization users
+gem 'cancan'

@@ -48,17 +48,25 @@
   </script>
 
 <div class="form-actions">
-
+  <% if can? :create, Bill %>
   <%= link_to "Versamento", new_campaign_bill_path(@campaign), :class => 'btn' %>  
+  <% end %>
+
   <%= link_to t('.back', :default => t("helpers.links.back")),
               campaigns_path, :class => 'btn'  %>
+
+  <% if can? :update, @campaign %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_campaign_path(@campaign), :class => 'btn' %>
+  <% end %>
+
+  <% if can? :destroy, @campaign %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               campaign_path(@campaign),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
+  <% end %>
 </div>
 
 

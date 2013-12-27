@@ -1,16 +1,19 @@
 class RegistrationController < Devise::RegistrationsController
 
+
     def new
         @user= User.new
     end
     
     def show
-        @user = current_user
+        #@user = current_user
+        @user = User.find(params[:id])
     end
     
     
     def update
-        @user = User.find(current_user.id)
+        #@user = User.find(current_user.id)
+        @user = User.find(params[:id])
         if @user.update_attributes(params[:user])
             set_flash_message :notice, :updated
             # Sign in the user bypassing validation in case his password changed
