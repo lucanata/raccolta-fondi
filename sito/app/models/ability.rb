@@ -16,7 +16,8 @@ class Ability
       #posso fare tutte le azioni su campagna
       #tranne distruggerla e modificare quella di altri
         can :create, Bill
-        can :show, Bill
+        can :show, Bill,:user_id=>user.id
+        can :mybills, Bill
         
         can :mycampaigns,Campaign
         can :index, Campaign

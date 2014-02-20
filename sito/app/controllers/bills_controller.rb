@@ -3,7 +3,7 @@ class BillsController < ApplicationController
   load_and_authorize_resource
 
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
-  before_filter :load_campaign, except: [:index]
+  before_filter :load_campaign, except: [:index, :mybills, :show]
 
   # GET /bills
   # GET /bills.json
@@ -14,7 +14,17 @@ class BillsController < ApplicationController
   # GET /bills/1
   # GET /bills/1.json
   def show
+    @user=current_user
+    @bill=Bill.find(params[:id])
   end
+
+  def mybills
+    @user=current_user
+    #questo funzia    #@campaigns = Campaign.where(user_id: @user.id)
+    @bills = @user.bills
+
+  end
+
 
   # GET /bills/new
   def new
