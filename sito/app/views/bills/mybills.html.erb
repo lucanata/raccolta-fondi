@@ -1,0 +1,28 @@
+
+<div class="page-header">
+  <h1> I Miei Versamenti </h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+
+      <th> Id </th>
+      <th> Campagna </th>
+      <th> Totale</th>
+      <th> Data </th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @bills.each do |bill| %>
+      <tr>
+        <td><%= link_to bill.id, bill_path(bill) %></td>
+        <td><%= link_to bill.campaign.nome, campaign_path(bill.campaign)%></td>
+        <td><%= bill.totale %></td>
+        <td><%=l bill.created_at %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

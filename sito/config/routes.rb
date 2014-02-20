@@ -16,7 +16,7 @@ Sito::Application.routes.draw do
 
 
   match '/mycampaigns' => 'campaigns#mycampaigns', :as => 'mycampaigns', :via => :get
-
+  match '/mybills' => 'bills#mybills', :as => 'mybills', :via => :get
 
   
 

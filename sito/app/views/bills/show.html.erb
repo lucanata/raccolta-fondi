@@ -1,11 +1,19 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p>
+ -->
+
+<h1>Dettagli Versamento</h1>
+
+<h2>Campagna: <%= link_to @bill.campaign.nome, campaign_path(@bill.campaign)%></h2>
+
 
 <p>
-  <strong>Totale:</strong>
+  <strong>Totale versamento:</strong>
   <%= @bill.totale %>
 </p>
 
-<% if can? :update, Bill %>
-link_to 'Edit', edit_campaign_bill_path(@campaign, @bill) %> |
-<% end %>
-<%= link_to 'Back', campaign_path(@campaign) %>
+<p>
+  <strong>Utilizzi versamento:</strong>
+  
+</p>
+
+<%= link_to 'Back', mybills_path %>
