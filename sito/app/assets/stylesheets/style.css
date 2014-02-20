@@ -48,3 +48,7 @@ a:focus {
   text-decoration: none;
     background-color:transparent;
 }
+
+.btn.btn-primary.btn-white {
+  color: #ffffff;
+}
