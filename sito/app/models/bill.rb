@@ -1,6 +1,6 @@
 class Bill < ActiveRecord::Base
 
-	attr_accessible :totale, :campaign_id, :user_id
+	attr_accessible :totale, :campaign_id, :user_id, :spesi
 
 	validates :totale, :presence => true
 	

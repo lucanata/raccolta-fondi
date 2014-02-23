@@ -1,12 +1,11 @@
-<%= simple_form_for(@aim) do |f| %>
-  <%= f.error_notification %>
+<%= form_for ([@camp, @aim]) do |f| %>
 
-  <div class="form-inputs">
-    <%= f.input :scopo %>
-    <%= f.input :importo %>
-  </div>
+  <p>
+    <%= f.label :scopo %><br />
+    <%= f.text_field :scopo %>
+    <%= f.label :importo %><br />
+    <%= f.number_field :importo %>
+  </p>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <p><%= f.submit "Effetua transizione"%></p>
 <% end %>

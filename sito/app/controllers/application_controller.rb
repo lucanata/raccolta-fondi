@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from CanCan::AccessDenied do |exception|
-	flash[:error] = "errore"
+	flash[:error] = "errore, non puoi accedere a questa pagina se non sei admin"
 	redirect_to root_url
   end
 end

@@ -1,6 +1,7 @@
 class AimsController < ApplicationController
   before_action :set_aim, only: [:show, :edit, :update, :destroy]
-
+  
+  before_filter :load_campaign, except: [:index, :show]
   # GET /aims
   # GET /aims.json
   def index
@@ -10,11 +11,13 @@ class AimsController < ApplicationController
   # GET /aims/1
   # GET /aims/1.json
   def show
+    @aim=Aim.find(params[:id])
   end
 
   # GET /aims/new
   def new
     @aim = Aim.new
+    # @camp= Campaign.find(params[:campaign_id])
   end
 
   # GET /aims/1/edit
@@ -24,12 +27,19 @@ class AimsController < ApplicationController
   # POST /aims
   # POST /aims.json
   def create
+    #@camp= Campaign.find(params[:campaign_id])
     @aim = Aim.new(aim_params)
-
+    #seleziono primo versamento che ha come id campagna lo stesso di quella in cui sono
+    @prova=Bill.find_by campaign_id:@camp.id
+    
+    @aim.bill_id=@prova.id
+    
     respond_to do |format|
       if @aim.save
-        format.html { redirect_to @aim, notice: 'Aim was successfully created.' }
+        format.html { redirect_to [@camp,@aim], notice: 'Aim was successfully created.' }
         format.json { render action: 'show', status: :created, location: @aim }
+        @prova.spesi=@prova.spesi+@aim.importo
+        @prova.save
       else
         format.html { render action: 'new' }
         format.json { render json: @aim.errors, status: :unprocessable_entity }
@@ -69,6 +79,14 @@ class AimsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def aim_params
-      params.require(:aim).permit(:scopo, :importo)
+       params.require(:aim).permit(:scopo,:importo,@camp)
+    
+    end
+
+    private
+
+    #viene fatto prima di ogni azione (before_filter) almeno ho sempre la campagna a cui si riferisce
+    def load_campaign
+      @camp= Campaign.find(params[:campaign_id])
     end
 end

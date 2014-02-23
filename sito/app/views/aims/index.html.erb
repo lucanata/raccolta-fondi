@@ -5,6 +5,7 @@
     <tr>
       <th>Scopo</th>
       <th>Importo</th>
+      <th>Versamento id</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= aim.scopo %></td>
         <td><%= aim.importo %></td>
+        <td><%= aim.bill_id %></td>
         <td><%= link_to 'Show', aim %></td>
         <td><%= link_to 'Edit', edit_aim_path(aim) %></td>
         <td><%= link_to 'Destroy', aim, method: :delete, data: { confirm: 'Are you sure?' } %></td>

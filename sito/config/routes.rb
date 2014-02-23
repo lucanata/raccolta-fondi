@@ -1,12 +1,14 @@
 Sito::Application.routes.draw do
   
 
-  resources :aims
+  resources :campaigns do
+    resources :aims
+  end
 
   resources :campaigns do
     resources :bills
   end
-
+  resources :aims
   resources :bills
   devise_for :users,:controllers => { :registrations =>'registration'}
   root :to =>'home#index'
