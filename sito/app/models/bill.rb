@@ -6,7 +6,7 @@ class Bill < ActiveRecord::Base
 	
 	#validates :campaign_id, :presence => true
 	#validates :user_id, :presence => true
-	
+    	
 	belongs_to :user
 	belongs_to :campaign
 	has_many :aims

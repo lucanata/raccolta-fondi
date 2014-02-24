@@ -1,0 +1,69 @@
+<% @tops.each do |campaign| %>
+<div class="well well-small">
+    <div>
+        <h4>
+          <%= link_to campaign.nome, campaign_path(campaign) %>
+        </h4>
+    </div>
+    
+    <hr>
+
+    <div class="row-fluid">
+
+
+        <div class="span4">
+            <%= campaign.descrizione.truncate(300, :separator => ' ')%>
+        </div>
+
+        <div class="span4">
+
+            <div>
+                Raccolti <%=campaign.somma%> su <%=campaign.goal%>
+                <%= progress_bar(campaign.somma * 100 /campaign.goal, :color =>'orange', :rounded => true) %> 
+                
+            </div>
+            
+            <hr>
+            
+            <div>
+            Tempo rimanente:
+            <div id="countDownTimer<%= campaign.id %>"></div>
+                <script>
+                    var year = <%= campaign.durata.year %>;
+                    var month = <%= campaign.durata.month %>;
+                    var day = <%= campaign.durata.day %>;
+                    var dealEndDate = new Date();
+                    dealEndDate = new Date(year, month - 1, day);
+                    $('#countDownTimer<%= campaign.id %>').countdown({until: dealEndDate});
+                </script>
+            </div>
+        </div>
+        <div class="span4 pagination-centered">
+            <p>
+                <div class="btn btn-default">
+                    <%= link_to "Dettagli", campaign_path(campaign) %>
+                </div>
+            </p>
+            <p>
+                <% if can? :create, @bill %>
+                <div class="btn btn-success">
+                    
+                    <%= link_to "Versamento", new_campaign_bill_path(campaign) %>
+                    
+                </div>
+                <% end %>
+            </p>
+        </div>
+        
+    </div>
+    
+
+</div>
+
+       
+<% end %>
+
+
+
+
+
