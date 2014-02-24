@@ -27,14 +27,14 @@
             
             <div>
             Tempo rimanente:
-            <div id="countDownTimer<%= campaign.id %>"></div>
+            <div id="countDownTimers<%= campaign.id %>"></div>
                 <script>
                     var year = <%= campaign.durata.year %>;
                     var month = <%= campaign.durata.month %>;
                     var day = <%= campaign.durata.day %>;
                     var dealEndDate = new Date();
                     dealEndDate = new Date(year, month - 1, day);
-                    $('#countDownTimer<%= campaign.id %>').countdown({until: dealEndDate});
+                    $('#countDownTimers<%= campaign.id %>').countdown({until: dealEndDate});
                 </script>
             </div>
         </div>

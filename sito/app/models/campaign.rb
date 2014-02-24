@@ -19,7 +19,7 @@ class Campaign < ActiveRecord::Base
         bills.inject(0) {|s,r| s += r.totale }
  	end
     
-    #restituisce hashmap (id,cash_to_goal) ordinato in modo crescente
+    #restituisce top 5 campagne piu vicine al completamento
     def self.obb
         array = Array.new
         Campaign.where(chiusa: false).each do |f|
