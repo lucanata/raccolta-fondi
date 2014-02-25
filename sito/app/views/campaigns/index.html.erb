@@ -1,11 +1,10 @@
 <%- model_class = Campaign -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1>Campagne attive</h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:nome) %></th>
       <th><%= model_class.human_attribute_name(:descrizione) %></th>
       <th><%= model_class.human_attribute_name(:durata) %></th>
@@ -19,8 +18,7 @@
   <tbody>
     <% @campaigns.each do |campaign| %>
       <tr>
-        <td><%= link_to campaign.id, campaign_path(campaign) %></td>
-        <td><%= campaign.nome %></td>
+        <td><%= link_to campaign.nome, campaign_path(campaign) %></td>
         <td><%= campaign.descrizione %></td>
         <td><%= campaign.durata %></td>
         <td><%= campaign.goal %></td>
