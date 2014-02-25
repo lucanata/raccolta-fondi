@@ -17,7 +17,9 @@ class Ability
       #tranne distruggerla e modificare quella di altri
         can :create, Bill
         can :show, Bill,:user_id=>user.id
-        can :mybills, Bill
+        can :mybills, Bill, :user_id=>user.id
+
+
         
         can :mycampaigns,Campaign
         can :index, Campaign

@@ -25,7 +25,6 @@ class BillsController < ApplicationController
 
   end
 
-
   # GET /bills/new
   def new
     
