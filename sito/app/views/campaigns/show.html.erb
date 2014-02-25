@@ -52,7 +52,11 @@
   <%= link_to "Versamento", new_campaign_bill_path(@campaign), :class => 'btn' %>  
   <% end %>
     
-  <%= link_to "Scopi", new_campaign_aim_path(@campaign), :class => 'btn' %>
+  <!--########################################################################## -->
+  <% if (@campaign.user_id == current_user.id)  #da vedere come fare con cancan%>
+    <%= link_to "Scopi", new_campaign_aim_path(@campaign), :class => 'btn' %> 
+  <% end %>
+  <!--########################################################################## -->
 
   <%= link_to t('.back', :default => t("helpers.links.back")),
               campaigns_path, :class => 'btn'  %>
@@ -70,6 +74,10 @@
               :class => 'btn btn-danger' %>
   <% end %>
 </div>
+
+<% if (@campaign.user_id == current_user.id) %>
+  <%= render :partial => 'details' %>
+<% end %>
 
 
 </body>

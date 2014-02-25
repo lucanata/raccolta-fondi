@@ -1,0 +1,67 @@
+<h1>Dettagli Campagna</h1>
+
+
+<div class="hero-unit">
+	<h2>Riepilogo Versamenti Ricevuti</h2>
+	<% if @campaign.bills %>
+	<table class="table table-striped">
+	  	<thead>
+	    	<tr>
+	    		<th>Id Versamento</th>
+	      		<th>Data Versamento</th>
+	      		<th>Id Donatore</th>
+	      		<th>Importo Versamento</th>
+	      		<th>Importo Utilizzato</th>
+	    	</tr>
+	  	</thead>
+	  	<tbody>
+	  		<% @alloc = 0%>
+	    	<% @campaign.bills.each do |bill| %>
+	      	<tr>
+	      		<% @alloc = @alloc+bill.spesi %>
+	      		<td> <%= bill.id %> </td>
+	        	<td> <%= bill.created_at %> </td>
+	        	<td> <%= bill.user_id %> </td>
+	        	<td> <%= bill.totale %> €</td>
+	        	<td> <%= bill.spesi %> €</td>
+	      	</tr>
+	     	<% end %>
+		</tbody>         
+	</table>
+	<% else %>
+		-Nessun versamento presente-
+	<% end %>
+	<h4>Totale Raccolti: <%=@campaign.somma%> €</h4>
+</div>
+
+
+
+
+<div class="hero-unit">
+	<h2>Riepilogo Scopi</h2>
+	<table class="table table-striped">
+	  	<thead>
+	    	<tr>
+	    		<th>Id</th>
+	      		<th>Scopo</th>
+	      		<th>Id Versamento</th>
+	      		<th>Importo</th>
+	    	</tr>
+	  	</thead>
+	  	<tbody>
+	    	<% @campaign.bills.each do |bill| %>
+	    		
+	      		<% bill.aims.each do |aim| %>
+	      			<tr>
+	      				<td> <%= aim.id %> </td>
+	        			<td> <%= aim.scopo %> </td>
+	        			<td> <%= aim.bill_id %> </td>
+	        			<td> <%= aim.importo %> €</td>
+	      			</tr>
+	      		<% end %>
+	     	<% end %>
+		</tbody>         
+	</table>
+	<% @alloc=@campaign.somma-@alloc %>
+	<h4>Ancora da allocare: <%=@alloc%> €</h4>
+</div>
