@@ -28,6 +28,7 @@ class AimsController < ApplicationController
   # POST /aims.json
 def create
     @creato= false
+    @tettomax = false
     #controllo per ogni versamento se è stato speso tutto o in parte
     @aimTemp = Aim.new(aim_params)
     #finchè ho soldi dello scopo da spartire
@@ -39,6 +40,10 @@ def create
     #NON SARA POSSIBILE INSERIRE UN IMPORTO PER UNO SCOPO 
     #SUPERIORE AI SOLDI TOTALI ANCORA DA ALLOCARE
     #while (@imp > 0)
+    if (@imp>@camp.somma-@camp.sommaimporti)
+      #se l'importo inserito troppo elevato esco
+      @tettomax = true
+    else
       #scorro i versamenti della campagna
       @camp.bills.sort_by{|bill| bill.created_at}.each do |bill|
         #per ogni versamento controllo se tutto il versamento è stato speso o no
@@ -80,6 +85,7 @@ def create
         puts "imp prima del break vale "+@imp.to_s
         break if (@imp==0)
       end
+    end
     #end
     
     #@camp= Campaign.find(params[:campaign_id])
@@ -96,8 +102,13 @@ def create
         #@prova.spesi=@prova.spesi+@aim.importo
         #@prova.save
       else
-        format.html { render action: 'new' }
-        format.json { render json: @aim.errors, status: :unprocessable_entity }
+        if @tettomax
+          #importo troppo alto ritorno a schermata campagna
+          format.html { redirect_to @camp, notice: 'importo troppo elevato' }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @aim.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

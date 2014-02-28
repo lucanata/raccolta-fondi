@@ -18,6 +18,10 @@ class Campaign < ActiveRecord::Base
 	def somma
         bills.inject(0) {|s,r| s += r.totale }
  	end
+
+  def sommaimporti
+        bills.inject(0) {|i,k| i += k.spesi }
+  end
     
     #restituisce top 5 campagne piu vicine al completamento
     def self.obb
