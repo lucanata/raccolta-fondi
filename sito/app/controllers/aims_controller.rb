@@ -97,7 +97,7 @@ def create
     
     respond_to do |format|
       if @creato
-        format.html { redirect_to [@camp,@aim], notice: 'Scopo inserito correttamente' }
+        format.html { redirect_to campaign_path(@camp.id), notice: 'Scopo inserito correttamente' }
         format.json { render action: 'show', status: :created, location: @aim }
         #@prova.spesi=@prova.spesi+@aim.importo
         #@prova.save

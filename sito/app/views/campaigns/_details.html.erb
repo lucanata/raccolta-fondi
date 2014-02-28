@@ -31,8 +31,9 @@
 	<% else %>
 		-Nessun versamento presente-
 	<% end %>
+
 	<h4>Totale Raccolti: <%=@campaign.somma%> €</h4>
-	
+
 </div>
 
 
@@ -40,6 +41,8 @@
 
 <div class="hero-unit">
 	<h2>Riepilogo Scopi</h2>
+
+	<%if @campaign.bills%>
 	<table class="table table-striped">
 	  	<thead>
 	    	<tr>
@@ -63,6 +66,28 @@
 	     	<% end %>
 		</tbody>         
 	</table>
+	<% end %>
+
+
 	<% @alloc=@campaign.somma-@alloc %>
-	<h4>Ancora da allocare: <%=@alloc%> €</h4>
+	</br><h4>Ancora da allocare: <%=@alloc%> €</h4>
+
+
+	<!--########################################################################## -->
+  <% if ((@campaign.user_id == current_user.id) && (@alloc>0))  #da vedere come fare con cancan%>
+    <%= link_to 'Aggiungi Scopo', new_campaign_aim_path(@campaign,@alloc),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modalScopo',:class => 'btn'}  %>
+  <% end %>
+  <!--########################################################################## -->
 </div>
+
+ 
+
+
+
+<div id="modalScopo" class="modal hide fade dimensione" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
+</div>
+
+
+ 

@@ -2,27 +2,47 @@
 <div class="page-header">
   <h1> I Miei Versamenti </h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
 
-      <th> Id </th>
-      <th> Campagna </th>
-      <th> Totale</th>
-      <th> Data </th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <% @bills.each do |bill| %>
+<% if @bills.length != 0 %>
+  <table class="table table-condensed table-striped" style="border-collapse:collapse;">
+    <thead>
       <tr>
-        <td><%= link_to bill.id, bill_path(bill) %></td>
-        <td><%= link_to bill.campaign.nome, campaign_path(bill.campaign)%></td>
-        <td><%= bill.totale %></td>
-        <td><%=l bill.created_at %></td>
-
+        <th> Id </th>
+        <th> Campagna </th>
+        <th> Totale</th>
+        <th> Data </th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+
+    <tbody>
+      <% @bills.each do |bill| %>
+        <tr data-toggle="collapse" data-target="#<%=bill.id%>Hidden" class="accordion-toggle">
+          <td><%= link_to bill.id, bill_path(bill) %></td>
+          <td><%= link_to bill.campaign.nome, campaign_path(bill.campaign)%></td>
+          <td><%= bill.totale %></td>
+          <td><%=l bill.created_at %></td>
+        </tr>
+        <tr >
+          <td colspan="6" class="hiddenRow">
+            <div class="accordian-body collapse" id="<%=bill.id%>Hidden"> 
+
+              <ul>
+                <% bill.aims.each do |aim| %>
+                  <li><%= aim.scopo %>: <%= aim.importo %>€</li>
+                <% end %>
+                <li>Non ancora utilizzati: <%= bill.totale-bill.spesi %>€</li>
+              </ul>
+            </div> 
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+  <div> -Non hai ancora effettuato Versamenti-</div>
+<% end %>
+
+
 
