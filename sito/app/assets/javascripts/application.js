@@ -16,8 +16,6 @@
 //= require turbolinks
 //= require_tree .
 
-
-
 //dovrebbe servire per il timer, mafunziona anche senza
 
 //$(document).ready(function()

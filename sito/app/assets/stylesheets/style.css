@@ -81,3 +81,15 @@ a:focus {
     color: #468847;
     text-align: left;
  }
+
+
+
+
+
+#modalScopo.dimensione{ height : 250px; 
+              width : 300px;
+            }
+
+.hiddenRow {
+    padding: 0 !important;
+}

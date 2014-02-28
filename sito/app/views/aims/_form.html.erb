@@ -1,11 +1,25 @@
+
+
+<div class="modal-header">
+    <a href="#" class="btn btn-success pull-right" data-dismiss="modal">&times;</a>
+    <h3 id="myModalLabel">Nuovo Scopo</h3>
+</div>
+<div class="modal-body">
+
 <%= form_for ([@camp, @aim]) do |f| %>
 
   <p>
-    <%= f.label :scopo %><br />
+    <%= f.label :scopo %>
     <%= f.text_field :scopo %>
-    <%= f.label :importo %><br />
-    <%= f.number_field :importo %>
+    <br />
+    <%= f.label :importo%>
+    <%= f.number_field :importo%>
   </p>
 
-  <p><%= f.submit "Effettua transizione"%></p>
+
+ <%= f.submit "Aggiungi", :class => 'btn btn-primary'%>
+
+
+</div>
+
 <% end %>
