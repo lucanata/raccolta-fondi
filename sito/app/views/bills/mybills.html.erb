@@ -18,7 +18,7 @@
     <tbody>
       <% @bills.each do |bill| %>
         <tr data-toggle="collapse" data-target="#<%=bill.id%>Hidden" class="accordion-toggle">
-          <td><%= link_to bill.id, bill_path(bill) %></td>
+          <td><%= bill.id %></td>
           <td><%= link_to bill.campaign.nome, campaign_path(bill.campaign)%></td>
           <td><%= bill.totale %></td>
           <td><%=l bill.created_at %></td>
