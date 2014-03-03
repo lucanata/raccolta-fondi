@@ -104,7 +104,7 @@ def create
       else
         if @tettomax
           #importo troppo alto ritorno a schermata campagna
-          format.html { redirect_to @camp, notice: 'importo troppo elevato' }
+          format.html { redirect_to @camp, alert: 'importo troppo elevato' }
         else
           format.html { render action: 'new' }
           format.json { render json: @aim.errors, status: :unprocessable_entity }

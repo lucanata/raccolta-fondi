@@ -1,32 +1,28 @@
 <% @tops.each do |campaign| %>
 <div class="well well-small">
-    <div>
-        <h4>
-          <%= link_to campaign.nome, campaign_path(campaign) %>
-        </h4>
-    </div>
-    
+    <div class="span9">
+            <h4> <%= link_to campaign.nome, campaign_path(campaign) %> </h4>
+        </div>
+        <div class="span3">
+            <div class="btn btn-default right">
+                <%= link_to "Dettagli", campaign_path(campaign) %>
+            </div>
+            <% if can? :create, Bill %>
+                <div class="btn btn-success">        
+                    <%= link_to "Versamento", new_campaign_bill_path(campaign) %>  
+                </div>
+            <% end %>
+        </div>
+    <hr>
     <hr>
 
+
     <div class="row-fluid">
-
-
         <div class="span4">
-            <%= campaign.descrizione.truncate(300, :separator => ' ')%>
-        </div>
-
-        <div class="span4">
-
-            <div>
-                Raccolti <%=campaign.somma%> su <%=campaign.goal%>
-                <%= progress_bar(campaign.somma * 100 /campaign.goal, :color =>'orange', :rounded => true) %> 
-                
+            <div class="thumbnail">
+                <img src="<%= image_path("300x200.gif") %>" alt="">
             </div>
-            
-            <hr>
-            
-            <div>
-            Tempo rimanente:
+
             <div id="countDownTimers<%= campaign.id %>"></div>
                 <script>
                     var year = <%= campaign.durata.year %>;
@@ -36,28 +32,25 @@
                     dealEndDate = new Date(year, month - 1, day);
                     $('#countDownTimers<%= campaign.id %>').countdown({until: dealEndDate});
                 </script>
-            </div>
-        </div>
-        <div class="span4 pagination-centered">
-            <p>
-                <div class="btn btn-default">
-                    <%= link_to "Dettagli", campaign_path(campaign) %>
-                </div>
-            </p>
-            <p>
-                <% if can? :create, Bill %>
-                <div class="btn btn-success">
-                    
-                    <%= link_to "Versamento", new_campaign_bill_path(campaign) %>
-                    
-                </div>
-                <% end %>
-            </p>
-        </div>
-        
-    </div>
-    
 
+        </div>
+        <div class="span5">
+            <%= campaign.descrizione.truncate(300, :separator => ' ')%>
+        </div>
+        <div class="span3 pagination-centered">
+            Raccolti <%=campaign.somma%> su <%=campaign.goal%>
+            <% @temp=campaign.somma * 100 /campaign.goal%>
+            <% @perc="height: "+@temp.to_s+"%" %>
+            <div class="contenitoreCuore">
+                <div class="glass">
+  
+                </div>
+                <div class="liquid" style="<%=@perc %>"   > </div>   
+            </div>
+
+        </div>
+    </div>
+ 
 </div>
 
        

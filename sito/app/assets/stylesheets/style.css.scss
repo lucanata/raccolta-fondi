@@ -10,11 +10,14 @@ a:focus {
   background-color:transparent;
 }
 
-
+.right {
+    float: right;
+}
 
 
 
 /*STILE DEI LINK FATTI A BOTTONE*/
+
 
 .btn a {
   color: #ffffff;
@@ -93,3 +96,69 @@ a:focus {
 .hiddenRow {
     padding: 0 !important;
 }
+
+
+/*PER THUMBNAILS*/
+.thumbnail.right-caption > img {
+    float: left;
+    margin-right: 9px;
+}
+
+.thumbnail.right-caption {
+    float: left;
+}
+
+.thumbnail.right-caption > .caption {
+    padding: 4px;
+}
+
+
+/*CUORE ANIMATO*/
+.contenitoreCuore {
+position:relative;
+height: 146px;
+top:20px;
+left:20px;
+
+}
+
+
+  .glass { 
+      z-index:10;
+      height: 145px;
+      width: 143px;
+      position: absolute;
+      bottom:0;
+      background-image: image-url("cuore.png"); /* Cuore */
+      background-repeat: no-repeat;
+    }
+    .liquid {
+      z-index: 0;
+      position:absolute;
+
+      bottom:0;
+      height: 145px;
+      width: 143px;
+      background-image: image-url("sfondo_cuore.jpg");
+      /* Remove the bottom two lines to stop animation */
+      -webkit-animation: move 150s linear infinite;
+      -moz-animation: move 150s linear infinite;
+    }
+    
+    @-webkit-keyframes move {
+        0% {
+           background-position: 0 0;
+        }
+        100% {
+           background-position: 2212px 0px;
+        }
+    }
+    
+    @-moz-keyframes move {
+        0% {
+           background-position: 0 0;
+        }
+        100% {
+           background-position: 2212px 0px;
+        }
+    }
