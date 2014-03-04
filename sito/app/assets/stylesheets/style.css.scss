@@ -1,3 +1,23 @@
+
+.padLeft {
+  padding-left:20px;
+
+}
+
+.padRight {
+  padding-right:20px;
+
+}
+
+.bordi {
+  border-left-color: black;
+  border-left-style: groove;
+  border-left-width: 1px;
+  border-bottom-color: black;
+  border-bottom-style: groove;
+  border-bottom-width: 1px;
+}
+
 a {
   color: #0088cc;
   text-decoration: none;
@@ -53,6 +73,10 @@ a:focus {
 }
 
 .btn.btn-primary.btn-white {
+  color: #ffffff;
+}
+
+.btn.btn-success.btn-white {
   color: #ffffff;
 }
 
@@ -115,50 +139,63 @@ a:focus {
 
 /*CUORE ANIMATO*/
 .contenitoreCuore {
-position:relative;
-height: 146px;
-top:20px;
-left:20px;
+  position:relative;
+  height: 146px;
+  top:20px;
+  left:20px;
 
 }
 
 
-  .glass { 
-      z-index:10;
-      height: 145px;
-      width: 143px;
-      position: absolute;
-      bottom:0;
-      background-image: image-url("cuore.png"); /* Cuore */
-      background-repeat: no-repeat;
-    }
-    .liquid {
-      z-index: 0;
-      position:absolute;
 
-      bottom:0;
-      height: 145px;
-      width: 143px;
-      background-image: image-url("sfondo_cuore.jpg");
-      /* Remove the bottom two lines to stop animation */
-      -webkit-animation: move 150s linear infinite;
-      -moz-animation: move 150s linear infinite;
+.heartB { 
+    z-index:10;
+    height: 145px;
+    width: 143px;
+    position: absolute;
+    bottom:0;
+    background-image: image-url("cuoreb.png"); /* Cuore */
+    background-repeat: no-repeat;
+  }
+
+
+.heart { 
+    z-index:10;
+    height: 145px;
+    width: 143px;
+    position: absolute;
+    bottom:0;
+    background-image: image-url("cuore.png"); /* Cuore */
+    background-repeat: no-repeat;
+  }
+
+.liquid {
+  z-index: 0;
+  position:absolute;
+
+  bottom:0;
+  height: 145px;
+  width: 143px;
+  background-image: image-url("sfondo_cuore.jpg");
+  /* Remove the bottom two lines to stop animation */
+  -webkit-animation: move 150s linear infinite;
+  -moz-animation: move 150s linear infinite;
+}
+
+@-webkit-keyframes move {
+    0% {
+       background-position: 0 0;
     }
-    
-    @-webkit-keyframes move {
-        0% {
-           background-position: 0 0;
-        }
-        100% {
-           background-position: 2212px 0px;
-        }
+    100% {
+       background-position: 2212px 0px;
     }
-    
-    @-moz-keyframes move {
-        0% {
-           background-position: 0 0;
-        }
-        100% {
-           background-position: 2212px 0px;
-        }
+}
+
+@-moz-keyframes move {
+    0% {
+       background-position: 0 0;
     }
+    100% {
+       background-position: 2212px 0px;
+    }
+}
