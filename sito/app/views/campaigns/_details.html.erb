@@ -2,8 +2,8 @@
 
 
 <div class="hero-unit">
-	<h2>Riepilogo Versamenti Ricevuti</h2>
-	<% if @campaign.bills %>
+	<h3>Riepilogo Versamenti Ricevuti</h3>
+	<% if @campaign.bills.length != 0 %>
 	<table class="table table-striped">
 	  	<thead>
 	    	<tr>
@@ -40,42 +40,49 @@
 
 
 <div class="hero-unit">
-	<h2>Riepilogo Scopi</h2>
-
-	<%if @campaign.bills%>
-	<table class="table table-striped">
-	  	<thead>
-	    	<tr>
-	    		<th>Id</th>
-	      		<th>Scopo</th>
-	      		<th>Id Versamento</th>
-	      		<th>Importo</th>
-	    	</tr>
-	  	</thead>
-	  	<tbody>
-	    	<% @campaign.bills.each do |bill| %>
+	<h3>Riepilogo Scopi</h3>
+	<% @alloc=@campaign.somma-@alloc %>
+	<%if @campaign.bills.length != 0%>
+		<%if @alloc != @campaign.somma%>
+			<table class="table table-striped">
+	  			<thead>
+	    			<tr>
+	    				<th>Id</th>
+	      				<th>Scopo</th>
+	      				<th>Id Versamento</th>
+	      				<th>Importo</th>
+	    			</tr>
+	  			</thead>
+	  			<tbody>
+	    			<% @campaign.bills.each do |bill| %>
 	    		
-	      		<% bill.aims.each do |aim| %>
-	      			<tr>
-	      				<td> <%= aim.id %> </td>
-	        			<td> <%= aim.scopo %> </td>
-	        			<td> <%= aim.bill_id %> </td>
-	        			<td> <%= aim.importo %> €</td>
-	      			</tr>
-	      		<% end %>
-	     	<% end %>
-		</tbody>         
-	</table>
+	      				<% bill.aims.each do |aim| %>
+	      					<tr>
+	      						<td> <%= aim.id %> </td>
+	        					<td> <%= aim.scopo %> </td>
+	        					<td> <%= aim.bill_id %> </td>
+	        					<td> <%= aim.importo %> €</td>
+	      					</tr>
+	      				<% end %>
+	     			<% end %>
+				</tbody>         
+			</table>
+		<% else %>
+			-Nessuno scopo inserito-
+		<% end %>
+	<% else %>
+		-Nessun versamento da poter utilizzare-
 	<% end %>
 
 
-	<% @alloc=@campaign.somma-@alloc %>
+
+	
 	</br><h4>Ancora da allocare: <%=@alloc%> €</h4>
 
 
 	<!--########################################################################## -->
   <% if ((@campaign.user_id == current_user.id) && (@alloc>0))  #da vedere come fare con cancan%>
-    <%= link_to 'Aggiungi Scopo', new_campaign_aim_path(@campaign,@alloc),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modalScopo',:class => 'btn'}  %>
+    <%= link_to 'Aggiungi Scopo', new_campaign_aim_path(@campaign,@alloc),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modalScopo',:class => 'btn btn-success'}  %>
   <% end %>
   <!--########################################################################## -->
 </div>
