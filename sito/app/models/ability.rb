@@ -11,6 +11,9 @@ class Ability
       if user.admin?  # admin user
         can :manage, :all
         can :update, Campaign
+        cannot :destroy, Campaign
+        cannot :edit, Bill
+        cannot :destroy, Bill
       #cannot :destroy, User, :id => user.id
       else # user.admin? == false  # Non-admin user
       #posso fare tutte le azioni su campagna

@@ -26,12 +26,12 @@
         <td><%=l campaign.created_at %></td>
         <td>
           <% if can? :update, campaign %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%= link_to t('.edit', :default => t("modifica campagna")),
                       edit_campaign_path(campaign), :class => 'btn btn-mini' %>
           <% end %>
 
           <% if can? :destroy, campaign %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+          <%= link_to t('.destroy', :default => t("elimina campagna")),
                       campaign_path(campaign),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
@@ -45,7 +45,7 @@
 </table>
 
  <% if can? :create, Campaign %>
-          <%= link_to t('.new', :default => t("helpers.links.new")),
+          <%= link_to t('.new', :default => t("Nuova campagna")),
             new_campaign_path,
             :class => 'btn btn-primary btn-white' %>
  <% end %>

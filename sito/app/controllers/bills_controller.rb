@@ -33,7 +33,14 @@ class BillsController < ApplicationController
     #bill = Bill.new(:campaign => @campaign)
     #@campaigns = Campaign.where(id: params[:campaign_id])
     #@campaigns = Campaign.where(user_id: @user.id)
-    @bill = @campaign.bills.new
+    respond_to do |format|
+      if @campaign.chiusa
+        format.html { redirect_to campaigns_url, notice: 'Non puoi donare! CAMPAGNA CHIUSA' }
+      else
+        @bill = @campaign.bills.new
+        format.html {}
+      end
+    end
   end
 
   # GET /bills/1/edit

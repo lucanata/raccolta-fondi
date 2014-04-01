@@ -1,6 +1,4 @@
 <h1>Dettagli Campagna</h1>
-
-
 <div class="hero-unit">
 	<h3>Riepilogo Versamenti Ricevuti</h3>
 	<% if @campaign.bills.length != 0 %>
@@ -25,8 +23,8 @@
 	        	<td> <%= bill.totale %> €</td>
 	        	<td> <%= bill.spesi %> €</td>
 	      	</tr>
-	     	<% end %>
-		</tbody>         
+	     	<% end %>		     
+		<tbody>         
 	</table>
 	<% else %>
 		-Nessun versamento presente-
@@ -40,51 +38,57 @@
 
 
 <div class="hero-unit">
-	<h3>Riepilogo Scopi</h3>
-	<% @alloc=@campaign.somma-@alloc %>
-	<%if @campaign.bills.length != 0%>
-		<%if @alloc != @campaign.somma%>
-			<table class="table table-striped">
-	  			<thead>
-	    			<tr>
-	    				<th>Id</th>
-	      				<th>Scopo</th>
-	      				<th>Id Versamento</th>
-	      				<th>Importo</th>
-	    			</tr>
-	  			</thead>
-	  			<tbody>
-	    			<% @campaign.bills.each do |bill| %>
-	    		
-	      				<% bill.aims.each do |aim| %>
-	      					<tr>
-	      						<td> <%= aim.id %> </td>
-	        					<td> <%= aim.scopo %> </td>
-	        					<td> <%= aim.bill_id %> </td>
-	        					<td> <%= aim.importo %> €</td>
-	      					</tr>
-	      				<% end %>
-	     			<% end %>
-				</tbody>         
-			</table>
+		<%if !(@alloc.present?) %>
+			<% @alloc=0 %>
+			<!-- se alloc è null lo pongo a 0 per evitare errore nil -->
+		<%end%>
+		<h3>Riepilogo Scopi</h3>
+		<% @alloc=@campaign.somma-@alloc %>
+		<%if @campaign.bills.length != 0%>
+			<%if @alloc != @campaign.somma%>
+				<table class="table table-striped">
+		  			<thead>
+		    			<tr>
+		    				<th>Id</th>
+		      				<th>Scopo</th>
+		      				<th>Id Versamento</th>
+		      				<th>Importo</th>
+		    			</tr>
+		  			</thead>
+		  			<tbody>
+		    			<% @campaign.bills.each do |bill| %>
+		    		
+		      				<% bill.aims.each do |aim| %>
+		      					<tr>
+		      						<td> <%= aim.id %> </td>
+		        					<td> <%= aim.scopo %> </td>
+		        					<td> <%= aim.bill_id %> </td>
+		        					<td> <%= aim.importo %> €</td>
+		      					</tr>
+		      				<% end %>
+		     			<% end %>
+					</tbody>         
+				</table>
+			<% else %>
+				-Nessuno scopo inserito-
+			<% end %>
 		<% else %>
-			-Nessuno scopo inserito-
+			-Nessun versamento da poter utilizzare-
 		<% end %>
-	<% else %>
-		-Nessun versamento da poter utilizzare-
-	<% end %>
-
-
-
 	
-	</br><h4>Ancora da allocare: <%=@alloc%> €</h4>
 
 
-	<!--########################################################################## -->
-  <% if ((@campaign.user_id == current_user.id) && (@alloc>0))  #da vedere come fare con cancan%>
-    <%= link_to 'Aggiungi Scopo', new_campaign_aim_path(@campaign,@alloc),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modalScopo',:class => 'btn btn-success'}  %>
-  <% end %>
-  <!--########################################################################## -->
+		
+		</br><h4>Ancora da allocare: <%=@alloc%> €</h4>
+
+
+		<!--########################################################################## -->
+	  <% if ((@campaign.user_id == current_user.id) && (@alloc>0))  #da vedere come fare con cancan%>
+	    <%= link_to 'Aggiungi Scopo', new_campaign_aim_path(@campaign,@alloc),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modalScopo',:class => 'btn btn-success'}  %>
+	  <% end %>
+	  <!--########################################################################## -->
+	
+
 </div>
 
  
@@ -95,6 +99,3 @@
 
 
 </div>
-
-
- 

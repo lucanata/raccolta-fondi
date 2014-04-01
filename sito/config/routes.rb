@@ -15,7 +15,7 @@ Sito::Application.routes.draw do
   match '/users', :to => 'users#index',    :as => 'users',         :via => :get
   match '/users/:id', :to => 'users#show',    :as => :user,         :via => :get
   get 'index' => 'home#index'
-
+  get 'about' => 'home#about'
 
   match '/mycampaigns' => 'campaigns#mycampaigns', :as => 'mycampaigns', :via => :get
   match '/mybills' => 'bills#mybills', :as => 'mybills', :via => :get
