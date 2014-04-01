@@ -29,10 +29,16 @@ class AimsController < ApplicationController
 def create
     @creato= false
     @tettomax = false
+    @errore=false
     #controllo per ogni versamento se è stato speso tutto o in parte
     @aimTemp = Aim.new(aim_params)
     #finchè ho soldi dello scopo da spartire
+
+    #se inserisco parole o numeri <=0 visualizzo errore
     @imp = @aimTemp.importo
+    if (@imp<=0)
+      @errore=true
+    end
     
     puts "Importo dello scopo: "+@imp.to_s
     #ATTENZIONE
@@ -96,19 +102,19 @@ def create
  #   @aim.bill_id=@prova.id
     
     respond_to do |format|
-      if @creato
+      if @errore
+        format.html { redirect_to campaign_path(@camp.id), alert: 'Inserisci un importo in euro maggiore di 0' }
+      elsif @creato
         format.html { redirect_to campaign_path(@camp.id), notice: 'Scopo inserito correttamente' }
         format.json { render action: 'show', status: :created, location: @aim }
         #@prova.spesi=@prova.spesi+@aim.importo
         #@prova.save
-      else
-        if @tettomax
+      elsif @tettomax
           #importo troppo alto ritorno a schermata campagna
           format.html { redirect_to @camp, alert: 'importo troppo elevato' }
-        else
+      else
           format.html { render action: 'new' }
           format.json { render json: @aim.errors, status: :unprocessable_entity }
-        end
       end
     end
   end

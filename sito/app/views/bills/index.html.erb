@@ -1,12 +1,12 @@
-<h1>Listing bills</h1>
+<h1>Lista Versamenti</h1>
 
 <table>
   <thead>
     <tr>
       <th>Totale</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Id_campagna</th>
+      <th>Id_utente</th>
+      <th>Spesi</th>
     </tr>
   </thead>
 
@@ -14,9 +14,12 @@
     <% @bills.each do |bill| %>
       <tr>
         <td><%= bill.totale %></td>
-        <td><%= link_to 'Show', bill %></td>
-        <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
-        <td><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= bill.campaign_id %></td>
+        <td><%= bill.user_id %></td>
+        <td><%= bill.spesi %></td>
+        <td><%= link_to 'Mostra Versamento', bill %></td>
+        <!--td><%= link_to 'Edit', edit_bill_path(bill) %></td>
+        <td><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td-->
       </tr>
     <% end %>
   </tbody>

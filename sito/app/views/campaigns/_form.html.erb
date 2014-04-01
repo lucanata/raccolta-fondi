@@ -3,8 +3,8 @@
   <%= f.input :descrizione %>
   <%= f.input :durata %>
   <%= f.input :goal %>
-  <!-- <%= f.input :chiusa %> -->
-  <%= f.input :chiusa, :as => :hidden, :input_html => { :value => false} %>
+  <%= f.input :chiusa %> 
+  <!-- %= f.input :chiusa, :as => :hidden, :input_html => { :value => false} % -->
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

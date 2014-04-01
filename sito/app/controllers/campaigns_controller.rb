@@ -3,8 +3,7 @@ class CampaignsController < ApplicationController
   load_and_authorize_resource
 
   respond_to :html, :xml, :json
-  before_action :set_campaign, only: [:show, :edit, :update, :destroy]
-  
+  before_action :set_campaign, only: [:show, :edit, :update, :destroy,:verifica_chiusura]
   
   # GET /campaigns
   # GET /campaigns.json

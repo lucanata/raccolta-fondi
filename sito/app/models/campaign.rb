@@ -16,13 +16,15 @@ class Campaign < ActiveRecord::Base
 
 	#definisco funzione somma che somma tutti i versamenti per una campagna	
 	def somma
+        s = 0
         bills.inject(0) {|s,r| s += r.totale }
  	end
 
   def sommaimporti
         bills.inject(0) {|i,k| i += k.spesi }
   end
-    
+
+
     #restituisce top 5 campagne piu vicine al completamento
     def self.obb
         array = Array.new
@@ -35,6 +37,7 @@ class Campaign < ActiveRecord::Base
         result = Campaign.find(indexes).index_by(&:id).slice(*indexes).values
         return result
     end
+
 
 	belongs_to :user
 

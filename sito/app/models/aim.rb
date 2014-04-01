@@ -3,7 +3,8 @@ class Aim < ActiveRecord::Base
 
 	validates :scopo, :presence => true
 
-	validates :importo, :presence => true
+	validates :importo, :presence => true,
+				:numericality => { :greater_than => 0 }
 	
 	#validates :bill_id, :presence => true
 

@@ -66,12 +66,17 @@
         </p>
         <p>
             C'è tempo fino al <strong><%= @campaign.durata %></strong>.
-        </p> 
+        </p>
       </div>
 
       <div class="span4 pagination-centered padLeft padRight">    
             <% @temp=@campaign.somma * 100 /@campaign.goal%>
-            <% @perc="height: "+@temp.to_s+"%" %>
+            <!-- permette di fermare riempimento cuore al 100%-->
+            <% if @temp >= 100 %>
+              <% @perc="height: 100%" %>
+            <%else%>
+              <% @perc="height: "+@temp.to_s+"%" %>
+            <%end%>
             <div class="contenitoreCuore">
                 <div class="heartB">
   
@@ -81,6 +86,7 @@
           </br></br></br>
             <div id="countDownTimer"></div>
             <script> 
+
               var year = <%= @campaign.durata.year %>;
               var month = <%= @campaign.durata.month %>; 
               var day = <%= @campaign.durata.day %>; 
@@ -88,6 +94,7 @@
               dealEndDate = new Date(year, month - 1, day); 
               $('#countDownTimer').countdown({until: dealEndDate}); 
             </script>
+ 
       </div>
 
       <div class="span1 pagination-centered"> 
@@ -102,11 +109,11 @@
       <% end %>
         
       
-      <%= link_to t('.back', :default => t("helpers.links.back")),
+      <%= link_to t('.back', :default => t("Tutte le campagne")),
                   campaigns_path, :class => 'btn'  %>
 
       <% if can? :update, @campaign %>
-      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+      <%= link_to t('.edit', :default => t("Modifica campagna")),
                   edit_campaign_path(@campaign), :class => 'btn' %>
       <% end %>
 

@@ -25,7 +25,7 @@
         <td><%=l campaign.created_at %></td>
         <td>
           <% if can? :update, Campaign %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%= link_to t('.edit', :default => t("Modifica campagna")),
                       edit_campaign_path(campaign), :class => 'btn btn-mini' %>
           <%end%>
           <% if can? :destroy, Campaign %>
@@ -42,7 +42,7 @@
 </table>
 
 <% if can? :create, Campaign %>
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to t('.new', :default => t("Crea nuova campagna")),
             new_campaign_path,
             :class => 'btn btn-primary btn-white' %>
 <%end%>

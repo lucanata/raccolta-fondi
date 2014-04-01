@@ -40,7 +40,12 @@
         <div class="span3 pagination-centered">
             Raccolti <%=campaign.somma%> su <%=campaign.goal%>
             <% @temp=campaign.somma * 100 /campaign.goal%>
-            <% @perc="height: "+@temp.to_s+"%" %>
+            <!-- permette di fermare riempimento cuore al 100%-->
+            <% if @temp >= 100 %>
+              <% @perc="height: 100%" %>
+            <%else%>
+              <% @perc="height: "+@temp.to_s+"%" %>
+            <%end%>
             <div class="contenitoreCuore">
                 <div class="heart">
   
